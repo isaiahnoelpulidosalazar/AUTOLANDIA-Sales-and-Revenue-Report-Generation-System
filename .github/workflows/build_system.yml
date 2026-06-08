@@ -66,17 +66,11 @@ jobs:
           echo $changesText >> $env:GITHUB_OUTPUT
           echo "EOF" >> $env:GITHUB_OUTPUT
 
-      - name: Create project
-        run: dotnet new console -n AUTOLANDIA
-      
-      - name: Add Roslyn package
-        run: dotnet add AUTOLANDIA package Microsoft.CodeAnalysis.CSharp
-
-      - name: Replace Program.cs
-        run: copy Program.cs AUTOLANDIA\Program.cs
+      - name: Restore packages
+        run: dotnet restore AUTOLANDIA.csproj
 
       - name: Publish EXE
-        run: dotnet publish AUTOLANDIA -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:AssemblyName=AUTOLANDIA-v${{ steps.version.outputs.VERSION }} -o publish
+        run: dotnet publish AUTOLANDIA.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:AssemblyName=AUTOLANDIA-v${{ steps.version.outputs.VERSION }} -o publish
 
       - name: Check if tag already exists
         id: check_tag

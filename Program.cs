@@ -1,7 +1,7 @@
 // current version - 1.0.0
 
 // changes:
-// - add form
+// - test everything
 
 namespace AUTOLANDIA
 {
