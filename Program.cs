@@ -1,3 +1,8 @@
+// current version - 1.0.0
+
+// changes:
+// - add form
+
 namespace AUTOLANDIA
 {
     internal static class Program
